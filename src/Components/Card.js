@@ -1,8 +1,10 @@
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
 
 function Card({ contact, handleDelete }) {
- return (
+  
+ 
+  return (
     <div className="card">
       <div className="card-body">
         <div className="row align-items-center">
