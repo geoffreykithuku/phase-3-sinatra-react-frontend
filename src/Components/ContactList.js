@@ -3,7 +3,25 @@ import { Link } from "react-router-dom";
 import Card from "./Card";
 
 function ContactList(){
+    const [contacts, setContacts] = useState([]);
 
+    useEffect(() => {
+      fetch("https://sammy-contact-manager.herokuapp.com/contacts")
+        .then((res) => res.json())
+        .then((data) => setContacts(data));
+    }, []);
+  
+  
+   function handleDelete(id) {
+      fetch(`https://sammy-contact-manager.herokuapp.com/contacts/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then(() => {
+          setContacts(contacts=>contacts.filter(item=>item.id !== id))
+        });
+    }
+    
     return (
         <React.Fragment>
           <section className="contact-search p-3">
