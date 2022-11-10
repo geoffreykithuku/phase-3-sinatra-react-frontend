@@ -21,10 +21,10 @@ function Card({ contact, handleDelete }) {
                 Name : <span className="fw-bold">{contact.name}</span>
               </li>
               <li className="list-group-item list-group-item-action">
-                Phone : <span className="fw-bold">{contact.phone}</span>
+                Company : <span className="fw-bold">{contact.company_name}</span>
               </li>
               <li className="list-group-item list-group-item-action">
-                Email : <span className="fw-bold">{contact.email}</span>
+                Title : <span className="fw-bold">{contact.title}</span>
               </li>
             </ul>
           </div>

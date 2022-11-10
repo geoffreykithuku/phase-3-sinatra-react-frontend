@@ -20,6 +20,9 @@ function ContactList() {
         setContacts((contacts) => contacts.filter((item) => item.id !== id));
       });
   }
+  function handleSubmit(e) {
+    setContacts(e.target.value);
+  }
 
   return (
     <React.Fragment>
@@ -44,7 +47,7 @@ function ContactList() {
             </div>
             <div className="row">
               <div className="col-md-6">
-                <form className="row">
+                <form className="row" onSubmit={handleSubmit}>
                   <div className="col">
                     <div className="mb-2">
                       <input
