@@ -2,7 +2,31 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
 function EditContact(){
-
+    const { contactId } = useParams();
+    const [contact, setContact] = useState({});
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      fetch(`https://sammy-contact-manager.herokuapp.com/contacts/${contactId}`)
+        .then((res) => res.json())
+        .then((item) => setContact(item));
+    }, [contactId]);
+  
+    function handleSubmit(e) {
+      e.preventDefault();
+      fetch(`https://sammy-contact-manager.herokuapp.com/contacts/${contactId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contact),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          navigate(`/contacts/view/${data.id}`);
+        });
+    }
+    
     return (
         <React.Fragment>
           <section className="add-contact p-3">
