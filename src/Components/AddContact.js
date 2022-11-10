@@ -2,21 +2,19 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function AddContact() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const [contact, setContact] = useState({
     name: "",
-    company: "",
+    company_name: "",
     email: "",
     title: "",
-    mobile: "",
-    photo:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0g8R5VmgqDqpRCwQfw2Y9V-DM-iXS59R9hQ&usqp=CAU",
+    phone: "",
+    photo: "",
   });
 
-
-function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    fetch(`https://sammy-contact-manager.herokuapp.com/contacts`, {
+    fetch(`http://localhost:9292/contacts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,10 +22,9 @@ function handleSubmit(e) {
       body: JSON.stringify(contact),
     })
       .then((res) => res.json())
-      .then((data) =>{
-            navigate(`/contacts/view/${data.id}`)
+      .then((data) => {
+        navigate(`/contacts/view/${data.id}`);
       });
-
   }
 
   return (
@@ -80,11 +77,11 @@ function handleSubmit(e) {
                     type="number"
                     className="form-control"
                     placeholder="Phone"
-                    value={contact.mobile}
+                    value={contact.phone}
                     onChange={(e) =>
                       setContact((contact) => ({
                         ...contact,
-                        mobile: e.target.value,
+                        phone: e.target.value,
                       }))
                     }
                   ></input>
@@ -108,11 +105,11 @@ function handleSubmit(e) {
                     type="text"
                     className="form-control"
                     placeholder="Company"
-                    value={contact.company}
+                    value={contact.company_name}
                     onChange={(e) =>
                       setContact((contact) => ({
                         ...contact,
-                        company: e.target.value,
+                        company_name: e.target.value,
                       }))
                     }
                   ></input>

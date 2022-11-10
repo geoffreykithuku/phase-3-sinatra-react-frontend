@@ -7,14 +7,14 @@ function EditContact(){
     const navigate = useNavigate();
   
     useEffect(() => {
-      fetch(`https://sammy-contact-manager.herokuapp.com/contacts/${contactId}`)
+      fetch(`http://localhost:9292/contacts/${contactId}`)
         .then((res) => res.json())
         .then((item) => setContact(item));
     }, [contactId]);
   
     function handleSubmit(e) {
       e.preventDefault();
-      fetch(`https://sammy-contact-manager.herokuapp.com/contacts/${contactId}`, {
+      fetch(`http://localhost:9292/contacts/${contactId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -77,11 +77,11 @@ function EditContact(){
                         type="number"
                         className="form-control"
                         placeholder="Phone"
-                        value={contact.mobile}
+                        value={contact.phone}
                         onChange={(e) =>
                           setContact((contact) => ({
                             ...contact,
-                            mobile: e.target.value,
+                            phone: e.target.value,
                           }))
                         }
                       ></input>
@@ -105,11 +105,11 @@ function EditContact(){
                         type="text"
                         className="form-control"
                         placeholder="Company"
-                        value={contact.company}
+                        value={contact.company_name}
                         onChange={(e) =>
                           setContact((contact) => ({
                             ...contact,
-                            company: e.target.value,
+                            company_name: e.target.value,
                           }))
                         }
                       ></input>

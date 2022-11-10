@@ -6,7 +6,7 @@ function ViewContact() {
   const [contact, setContact] = useState({});
 
   useEffect(() => {
-    fetch(`https://sammy-contact-manager.herokuapp.com/contacts/${contactId}`)
+    fetch(`http://localhost:9292/contacts/${contactId}`)
       .then((res) => res.json())
       .then((item) => setContact(item));
   }, [contactId]);
@@ -43,13 +43,13 @@ function ViewContact() {
                   Name : <span className="fw-bold">{contact.name}</span>
                 </li>
                 <li className="list-group-item list-group-item-action">
-                  Phone : <span className="fw-bold">{contact.mobile}</span>
+                  Phone : <span className="fw-bold">{contact.phone}</span>
                 </li>
                 <li className="list-group-item list-group-item-action">
                   Email : <span className="fw-bold">{contact.email}</span>
                 </li>
                 <li className="list-group-item list-group-item-action">
-                  Company : <span className="fw-bold">{contact.company}</span>
+                  Company : <span className="fw-bold">{contact.company_name}</span>
                 </li>
                 <li className="list-group-item list-group-item-action">
                   Title : <span className="fw-bold">{contact.title}</span>
