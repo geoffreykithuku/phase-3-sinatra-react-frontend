@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Card({ contact, handleDelete }) {
-  
- 
   return (
     <div className="card">
       <div className="card-body">
@@ -21,7 +19,8 @@ function Card({ contact, handleDelete }) {
                 Name : <span className="fw-bold">{contact.name}</span>
               </li>
               <li className="list-group-item list-group-item-action">
-                Company : <span className="fw-bold">{contact.company_name}</span>
+                Company :{" "}
+                <span className="fw-bold">{contact.company_name}</span>
               </li>
               <li className="list-group-item list-group-item-action">
                 Title : <span className="fw-bold">{contact.title}</span>
@@ -41,7 +40,10 @@ function Card({ contact, handleDelete }) {
             >
               <i className="fa fa-pen"></i>
             </Link>
-            <button className="btn btn-danger my-1" onClick={()=>handleDelete(contact.id)}>
+            <button
+              className="btn btn-danger my-1"
+              onClick={() => handleDelete(contact.id)}
+            >
               <i className="fa fa-trash"></i>
             </button>
           </div>
