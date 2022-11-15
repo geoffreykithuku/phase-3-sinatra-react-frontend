@@ -7,20 +7,25 @@ function EditContact(){
     const navigate = useNavigate();
   
     useEffect(() => {
-      fetch(`http://localhost:9292/contacts/${contactId}`)
+      fetch(
+        `https://sinatra-react-project-phase-3.herokuapp.com/contacts/${contactId}`
+      )
         .then((res) => res.json())
         .then((item) => setContact(item));
     }, [contactId]);
   
     function handleSubmit(e) {
       e.preventDefault();
-      fetch(`http://localhost:9292/contacts/${contactId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(contact),
-      })
+      fetch(
+        `https://sinatra-react-project-phase-3.herokuapp.com/contacts/${contactId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(contact),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           navigate(`/contacts/view/${data.id}`);

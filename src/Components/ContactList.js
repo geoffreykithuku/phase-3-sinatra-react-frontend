@@ -4,24 +4,38 @@ import Card from "./Card";
 
 function ContactList() {
   const [contacts, setContacts] = useState([]);
-
+  const [query, setQuery] = useState("");
+  const [searchValue, setsearchValue] = useState("");
+  console.log(searchValue);
   useEffect(() => {
-    fetch("http://localhost:9292/contacts")
+    fetch("https://sinatra-react-project-phase-3.herokuapp.com/contacts")
       .then((res) => res.json())
       .then((data) => setContacts(data));
-  }, []);
+  }, [searchValue]);
 
   function handleDelete(id) {
-    fetch(`http://localhost:9292/contacts/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://sinatra-react-project-phase-3.herokuapp.com/contacts/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then(() => {
         setContacts((contacts) => contacts.filter((item) => item.id !== id));
       });
   }
+  function handleChange(e) {
+    setQuery(e.target.value);
+  }
   function handleSubmit(e) {
-    setContacts(e.target.value);
+    e.preventDefault();
+    setsearchValue((searchValue) => query);
+    fetch(
+      `https://sinatra-react-project-phase-3.herokuapp.com/contacts/${query}`
+    )
+      .then((res) => res.json())
+      .then((data) => setContacts(data));
   }
 
   return (
@@ -47,23 +61,25 @@ function ContactList() {
             </div>
             <div className="row">
               <div className="col-md-6">
-                <form className="row" onSubmit={handleSubmit}>
+                <form className="row">
                   <div className="col">
                     <div className="mb-2">
                       <input
+                        onChange={handleChange}
                         type="text"
                         className="form-control"
                         placeholder="Search Names"
-                      ></input>
+                      />
                     </div>
                   </div>
                   <div className="col">
                     <div className="mb-2">
                       <input
+                        // onClick={handleSubmit}
                         type="submit"
                         className="btn btn-outline-dark"
                         value="Search"
-                      ></input>
+                      />
                     </div>
                   </div>
                 </form>

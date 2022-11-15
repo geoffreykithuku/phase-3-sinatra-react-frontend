@@ -6,7 +6,9 @@ function ViewContact() {
   const [contact, setContact] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:9292/contacts/${contactId}`)
+    fetch(
+      `https://sinatra-react-project-phase-3.herokuapp.com/contacts/${contactId}`
+    )
       .then((res) => res.json())
       .then((item) => setContact(item));
   }, [contactId]);

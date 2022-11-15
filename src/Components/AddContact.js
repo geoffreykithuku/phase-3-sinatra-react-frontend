@@ -14,7 +14,7 @@ function AddContact() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch(`http://localhost:9292/contacts`, {
+    fetch(`https://sinatra-react-project-phase-3.herokuapp.com/contacts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
